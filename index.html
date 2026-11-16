@@ -178,6 +178,7 @@
               <li>Nếu máy hỏi, cho phép <em>Cài ứng dụng không rõ nguồn gốc</em> cho trình duyệt/Files.</li>
               <li>Mở PianoBloom, vào <em>Khu vực phụ huynh</em> để tạo hồ sơ cho bé.</li>
             </ol>
+            <p class="meta">Điện thoại đời cũ (chip 32-bit) báo "không tương thích"? Tải bản <a href="https://github.com/mittohoa/pianobloom-download/releases/latest/download/pianobloom-armv7.apk">dành cho máy 32-bit</a>.</p>
             <p class="meta" style="margin-top:14px"><strong>Cập nhật:</strong> tải bản mới và cài đè lên bản cũ — tiến độ học trên máy được giữ nguyên.</p>
           </div>
           <div>
@@ -193,6 +194,7 @@
 <footer>
   <div class="wrap">
     PianoBloom — bản thử nghiệm. Ứng dụng không chứa quảng cáo hay công cụ theo dõi; trang này cũng không dùng công cụ phân tích.
+    <a href="privacy.html">Chính sách quyền riêng tư</a>.
     Mã kiểm tra SHA-256 của từng file APK được ghi trong ghi chú phát hành.
   </div>
 </footer>
@@ -209,7 +211,7 @@
       if (!list.length) return;
       var html = '';
       list.forEach(function (rel, i) {
-        var apk = (rel.assets || []).filter(function (a) { return /\.apk$/.test(a.name); })[0];
+        var apk = (rel.assets || []).filter(function (a) { return a.name === 'pianobloom.apk'; })[0];
         var date = new Date(rel.published_at).toLocaleDateString('vi-VN');
         html += '<div class="release"><h4>' + esc(rel.name || rel.tag_name) + (i === 0 ? ' <span class="badge">Mới nhất</span>' : '') + '</h4>' +
           '<div class="meta">' + date + (apk ? ' · ' + mb(apk.size) + ' · <a href="' + esc(apk.browser_download_url) + '">Tải bản này</a>' : '') + '</div>' +

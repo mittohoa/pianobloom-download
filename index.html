@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PianoBloom — Tự học piano cho bé và ba mẹ</title>
+<meta name="description" content="PianoBloom: ứng dụng Android tự học piano cho trẻ 4–12 tuổi và phụ huynh chưa biết nhạc. Bản thử nghiệm, tải APK miễn phí.">
+<meta name="theme-color" content="#7955D6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='26' r='18' fill='%23F59BCB'/%3E%3Ccircle cx='32' cy='26' r='11' fill='%23FCC6E1'/%3E%3Crect x='30' y='40' width='4' height='20' rx='2' fill='%234FAF90'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --lav: #7955D6; --plum: #443366; --pink: #F59BCB; --mint: #70C9AE;
+    --sun: #F6C453; --cream: #FFF8F0; --text: #28233A; --muted: #5B5470;
+    --card: #FFFFFF; --line: #E8E0FA; --bg: #FFF8F0;
+    --hero: linear-gradient(160deg, #FFF1DC 0%, #F3EAFF 55%, #E2F6EE 100%);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text: #F3EEFF; --muted: #C9C0DD; --card: #231D33; --line: #3A3150;
+      --bg: #17121F; --plum: #D9CCFF;
+      --hero: linear-gradient(160deg, #2A2038 0%, #221B33 55%, #18282A 100%);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 17px/1.55 "Nunito", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  a { color: var(--lav); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+  header.hero { background: var(--hero); padding: 48px 0 56px; overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
+  .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 22px; color: var(--plum); }
+  .brand svg { width: 44px; height: 44px; }
+  h1 { font-size: clamp(32px, 5vw, 50px); line-height: 1.12; margin: 18px 0 12px; color: var(--plum); }
+  .lead { font-size: 19px; color: var(--muted); margin: 0 0 24px; max-width: 34em; }
+  .badge { display: inline-block; padding: 4px 12px; border-radius: 999px; background: #FFE39A; color: #443366; font-weight: 700; font-size: 14px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 8px 0 10px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+    padding: 15px 24px; border-radius: 18px; font-weight: 800; font-size: 18px;
+    min-height: 48px;
+  }
+  .btn.primary { background: var(--lav); color: #fff; box-shadow: 0 10px 24px rgba(121,85,214,.35); }
+  .btn.primary:hover { filter: brightness(1.07); }
+  .btn.ghost { border: 2px solid var(--lav); color: var(--lav); }
+  .meta { color: var(--muted); font-size: 14px; }
+  .phone { justify-self: center; width: min(300px, 80vw); border-radius: 34px; padding: 10px; background: #1d1828; box-shadow: 0 24px 60px rgba(68,51,102,.35); transform: rotate(2deg); }
+  .phone img { display: block; width: 100%; border-radius: 26px; }
+  section { padding: 56px 0; }
+  h2 { font-size: clamp(26px, 3.4vw, 34px); color: var(--plum); margin: 0 0 8px; }
+  .sub { color: var(--muted); margin: 0 0 28px; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: 22px; }
+  .card .ico { font-size: 34px; line-height: 1; }
+  .card h3 { margin: 10px 0 6px; font-size: 19px; }
+  .card p { margin: 0; color: var(--muted); font-size: 16px; }
+  .journey { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; counter-reset: l; }
+  .step { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 14px 16px; }
+  .step b { display: block; color: var(--lav); font-size: 14px; }
+  .shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .shots.wide { grid-template-columns: repeat(3, 1fr); margin-top: 16px; }
+  figure { margin: 0; }
+  figure img { width: 100%; border-radius: 20px; border: 1px solid var(--line); display: block; }
+  figcaption { font-size: 14px; color: var(--muted); margin-top: 6px; text-align: center; }
+  .download { background: var(--card); border: 1px solid var(--line); border-radius: 28px; padding: 28px; }
+  .dl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  ol.install { padding-left: 22px; margin: 8px 0 0; }
+  ol.install li { margin: 6px 0; }
+  .release { border-top: 1px solid var(--line); padding: 14px 0; }
+  .release:first-child { border-top: 0; padding-top: 4px; }
+  .release h4 { margin: 0; font-size: 17px; }
+  .release pre { white-space: pre-wrap; font: inherit; color: var(--muted); margin: 6px 0 0; font-size: 15px; }
+  code, .hash { font-family: ui-monospace, Consolas, monospace; font-size: 13px; word-break: break-all; }
+  .note { background: #FFF4D6; color: #4A3B12; border-radius: 18px; padding: 16px 18px; font-size: 15px; }
+  @media (prefers-color-scheme: dark) { .note { background: #3A3018; color: #FBEBC0; } }
+  footer { padding: 32px 0 48px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
+  @media (max-width: 860px) {
+    .hero-grid, .dl-grid { grid-template-columns: 1fr; }
+    .cards { grid-template-columns: 1fr 1fr; }
+    .journey { grid-template-columns: 1fr 1fr; }
+    .shots, .shots.wide { grid-template-columns: 1fr 1fr; }
+    .phone { transform: none; }
+  }
+  @media (max-width: 520px) {
+    .cards, .shots.wide { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="brand">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6c-10 0-18 7-18 16s8 16 18 16 18-7 18-16S42 6 32 6z" fill="#F59BCB"/><circle cx="32" cy="22" r="11" fill="#FCC6E1"/><path d="M14 22a18 18 0 0 1 36 0" fill="none" stroke="#7955D6" stroke-width="4"/><rect x="10" y="18" width="7" height="12" rx="3" fill="#443366"/><rect x="47" y="18" width="7" height="12" rx="3" fill="#443366"/><rect x="30" y="38" width="4" height="22" rx="2" fill="#4FAF90"/><path d="M33 50c6-6 12-6 16-4-4 5-10 7-16 4z" fill="#70C9AE"/></svg>
+        PianoBloom
+      </div>
+      <h1>Mỗi nốt nhạc,<br>một bông hoa.</h1>
+      <p class="lead">Ứng dụng Android giúp <strong>bé 4–12 tuổi</strong> và <strong>ba mẹ chưa biết nhạc</strong> tự học piano: Bloomie dẫn từng bước bằng giọng nói, trò chơi nghe – chơi – sáng tạo, không cần giáo viên.</p>
+      <div class="cta">
+        <a class="btn primary" id="dl" href="https://github.com/mittohoa/pianobloom-download/releases/latest/download/pianobloom.apk">
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 3h2v10.2l3.6-3.6 1.4 1.4-6 6-6-6 1.4-1.4 3.6 3.6V3zM5 19h14v2H5z"/></svg>
+          Tải APK cho Android
+        </a>
+        <a class="btn ghost" href="#cai-dat">Cách cài đặt</a>
+      </div>
+      <div class="meta"><span id="dl-meta">Bản mới nhất · Android 7.0 trở lên</span> · <span class="badge">Bản thử nghiệm</span></div>
+    </div>
+    <div class="phone"><img src="screens/home.webp" width="540" height="1170" alt="Màn hình chính: Bloomie chào bé, nút Bài học hôm nay và Chơi tự do"></div>
+  </div>
+</header>
+
+<main>
+  <section>
+    <div class="wrap">
+      <h2>Học như chơi trong khu vườn âm nhạc</h2>
+      <p class="sub">Thiết kế cho trẻ mới bắt đầu: ít chữ, nhiều hình động và giọng nói.</p>
+      <div class="cards">
+        <div class="card"><div class="ico">🌸</div><h3>Bloomie dẫn đường</h3><p>Bông hồng đeo tai nghe chào bé, đọc từng bước (chữ sáng theo giọng đọc), khen khi bé làm tốt và nhẹ nhàng gợi ý khi chưa đúng.</p></div>
+        <div class="card"><div class="ico">🎹</div><h3>Đàn trên màn hình hoặc đàn thật</h3><p>Đàn ảo cảm ứng đa điểm; hỗ trợ đàn nối cáp USB MIDI, Bluetooth MIDI và micro (thử nghiệm).</p></div>
+        <div class="card"><div class="ico">🐦🐻</div><h3>Trò chơi nghe và chơi</h3><p>"Cao hay thấp?", Bloomie hỏi – con đáp, hoa nở theo phách, nốt nhạc bay lên từ phím bé vừa chơi.</p></div>
+        <div class="card"><div class="ico">👨‍👩‍👧</div><h3>Ba mẹ cùng tự học</h3><p>Hồ sơ "Phụ huynh tự học" với tiến độ riêng, hướng dẫn cho ba mẹ trước và sau mỗi bài, báo cáo 7/30 ngày không xếp hạng.</p></div>
+        <div class="card"><div class="ico">📴</div><h3>Chạy hoàn toàn offline</h3><p>Không cần mạng, không quảng cáo, không theo dõi. Âm thanh micro chỉ xử lý trên máy, không bao giờ gửi đi.</p></div>
+        <div class="card"><div class="ico">🔒</div><h3>Cổng phụ huynh</h3><p>Cài đặt, báo cáo và quyền riêng tư nằm sau một thử thách nhỏ dành cho người lớn.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <h2>Gói 1: Khu vườn âm thanh</h2>
+      <p class="sub">8 bài mở dần theo hành trình — hoa nở khi học xong, học lại bất cứ lúc nào.</p>
+      <div class="journey">
+        <div class="step"><b>Bài 1</b>Chim cao, gấu thấp</div>
+        <div class="step"><b>Bài 2</b>Hoa nở theo phách</div>
+        <div class="step"><b>Bài 3</b>Nhà hai phím đen</div>
+        <div class="step"><b>Bài 4</b>Tìm và chơi Đô – Rê – Mi</div>
+        <div class="step"><b>Bài 5</b>Ngồi đẹp như hoa</div>
+        <div class="step"><b>Bài 6</b>Bloomie hỏi, con đáp</div>
+        <div class="step"><b>Bài 7</b>Bài hát ba nốt: Hoa xinh</div>
+        <div class="step"><b>Bài 8</b>Buổi hòa nhạc nhỏ</div>
+      </div>
+      <p class="note" style="margin-top:18px"><strong>Lưu ý:</strong> nội dung bài học là <strong>bản nháp, chưa được giáo viên piano duyệt</strong> (được ghi rõ trong ứng dụng). Hãy xem đây là bản dùng thử.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <h2>Hình ảnh</h2>
+      <p class="sub">Chụp từ bản thử nghiệm.</p>
+      <div class="shots">
+        <figure><img src="screens/journey.webp" loading="lazy" width="540" height="1170" alt="Trang chủ có Hành trình vườn nhạc 8 bông hoa"><figcaption>Hành trình vườn nhạc</figcaption></figure>
+        <figure><img src="screens/home.webp" loading="lazy" width="540" height="1170" alt="Bloomie chào bé"><figcaption>Bloomie chào bé</figcaption></figure>
+        <figure><img src="screens/report.webp" loading="lazy" width="540" height="1170" alt="Báo cáo cho phụ huynh"><figcaption>Báo cáo cho ba mẹ</figcaption></figure>
+      </div>
+      <div class="shots wide">
+        <figure><img src="screens/game.webp" loading="lazy" width="960" height="443" alt="Trò chơi Cao hay thấp với hình chim và gấu"><figcaption>Trò chơi "Cao hay thấp?"</figcaption></figure>
+        <figure><img src="screens/lesson.webp" loading="lazy" width="960" height="443" alt="Bài học với lời khen Bloomie vui quá"><figcaption>Lời khen sau mỗi lần chơi đúng</figcaption></figure>
+        <figure><img src="screens/freeplay.webp" loading="lazy" width="960" height="443" alt="Chơi tự do, tên nốt bay lên từ phím"><figcaption>Chơi tự do, Bloomie đọc tên nốt</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="cai-dat" style="padding-top:0">
+    <div class="wrap">
+      <div class="download">
+        <div class="dl-grid">
+          <div>
+            <h2>Tải và cài đặt</h2>
+            <p class="sub" style="margin-bottom:12px">Ứng dụng chưa có trên Google Play; cài trực tiếp từ file APK.</p>
+            <a class="btn primary" href="https://github.com/mittohoa/pianobloom-download/releases/latest/download/pianobloom.apk">Tải bản mới nhất</a>
+            <ol class="install">
+              <li>Mở link trên điện thoại Android (7.0 trở lên).</li>
+              <li>Mở file <code>pianobloom.apk</code> vừa tải.</li>
+              <li>Nếu máy hỏi, cho phép <em>Cài ứng dụng không rõ nguồn gốc</em> cho trình duyệt/Files.</li>
+              <li>Mở PianoBloom, vào <em>Khu vực phụ huynh</em> để tạo hồ sơ cho bé.</li>
+            </ol>
+            <p class="meta" style="margin-top:14px"><strong>Cập nhật:</strong> tải bản mới và cài đè lên bản cũ — tiến độ học trên máy được giữ nguyên.</p>
+          </div>
+          <div>
+            <h2 style="font-size:24px">Các phiên bản</h2>
+            <div id="releases"><p class="meta">Xem tất cả phiên bản trên <a href="https://github.com/mittohoa/pianobloom-download/releases">trang Releases</a>.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    PianoBloom — bản thử nghiệm. Ứng dụng không chứa quảng cáo hay công cụ theo dõi; trang này cũng không dùng công cụ phân tích.
+    Mã kiểm tra SHA-256 của từng file APK được ghi trong ghi chú phát hành.
+  </div>
+</footer>
+
+<script>
+// Lists releases from the public GitHub API (no tracking, no cookies).
+(function () {
+  var box = document.getElementById('releases');
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function mb(b) { return (b / 1048576).toFixed(1).replace('.', ',') + ' MB'; }
+  fetch('https://api.github.com/repos/mittohoa/pianobloom-download/releases?per_page=10')
+    .then(function (r) { if (!r.ok) throw r; return r.json(); })
+    .then(function (list) {
+      if (!list.length) return;
+      var html = '';
+      list.forEach(function (rel, i) {
+        var apk = (rel.assets || []).filter(function (a) { return /\.apk$/.test(a.name); })[0];
+        var date = new Date(rel.published_at).toLocaleDateString('vi-VN');
+        html += '<div class="release"><h4>' + esc(rel.name || rel.tag_name) + (i === 0 ? ' <span class="badge">Mới nhất</span>' : '') + '</h4>' +
+          '<div class="meta">' + date + (apk ? ' · ' + mb(apk.size) + ' · <a href="' + esc(apk.browser_download_url) + '">Tải bản này</a>' : '') + '</div>' +
+          (rel.body ? '<pre>' + esc(rel.body.split('\n## SHA-256')[0].trim()) + '</pre>' : '') + '</div>';
+        if (i === 0 && apk) {
+          document.getElementById('dl-meta').textContent = (rel.tag_name || '') + ' · ' + mb(apk.size) + ' · Android 7.0 trở lên';
+        }
+      });
+      box.innerHTML = html;
+    })
+    .catch(function () { /* keep the static link */ });
+})();
+</script>
+</body>
+</html>

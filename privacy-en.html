@@ -32,7 +32,8 @@
 
   <div class="box">
     <strong>In short:</strong> PianoBloom keeps learning progress <strong>on the phone</strong>.
-    No ads, no analytics or tracking tools, no account needed, never asks for your child's name or photo.
+    No ads, no analytics or tracking tools, no account required, never asks for your child's name or photo.
+    Cloud sync is an <strong>option</strong> parents turn on with a parent account (section 3b).
     The microphone (if a parent turns it on) is processed on the phone only and is <strong>never recorded, stored or sent</strong>.
   </div>
 
@@ -47,7 +48,7 @@
     <tr><td>Sound settings, current learner, app language, reminder time, measured audio/microphone latency (just milliseconds)</td><td>Remember choices</td></tr>
     <tr><td>Error log: the last 20 app errors, with ids and emails masked</td><td>Only if a parent chooses to attach it to feedback (section 5c)</td></tr>
   </table>
-  <p>Everything is in the app's private storage on the phone. The app <strong>turns off Android's automatic backup</strong> for this data.</p>
+  <p>Everything is in the app's private storage on the phone; learning data is <strong>encrypted</strong> with a key kept in Android's secure key store. The app <strong>turns off Android's automatic backup</strong> for this data.</p>
 
   <h2>2. Microphone</h2>
   <ul>
@@ -61,7 +62,18 @@
     <li>Learning, playing and reports work <strong>fully offline</strong>.</li>
     <li>Only when a parent taps <em>Check for a new version</em> (download-page builds), the app reads the public list of versions on GitHub. No child data is sent; GitHub may see the IP address, like any website. The Google Play build has no such button.</li>
     <li>Tapping a link (download, this page) opens the phone's browser.</li>
-    <li>Cloud sync is <strong>not included</strong> in the published builds. If it is ever offered, it will be an option parents turn on with a parent account, without sound, and this policy will be updated first.</li>
+    <li id="two-devices"><strong>Linking two devices over Wi-Fi (trial, only when a parent turns it on):</strong> one device is the main device; the other enters its address and PIN, on <strong>the same home Wi-Fi or a personal hotspot</strong>. Only the numbers of the notes pressed/released, the keys to light and keep-alive signals travel between the two — <strong>no sound, names or learning data</strong>, no internet or server, nothing stored. The app accepts connections from local network addresses only; after several wrong PINs the main device stops; it also stops after 10 minutes without a second device.</li>
+    <li>Cloud sync runs only when a parent turns it on (section 3b).</li>
+  </ul>
+
+  <h2 id="cloud-sync">3b. Cloud sync (optional, from version 0.1.12)</h2>
+  <ul>
+    <li><strong>Off by default.</strong> A parent turns it on in Parent area → <em>Cloud sync</em> with a parent account (email + password). Children never create or use an account.</li>
+    <li><strong>Sent when on:</strong> the parent account email; learner profiles (role, age band — no name, photo or birth date); lesson progress, attempts (notes played, right/not yet, hints), practice time, skill levels, review schedule; parent observations; songs played, tunes your child made up (notes and timing only) and the garden; connected piano info (source type, name, Bluetooth address of a MIDI piano if any).</li>
+    <li><strong>Never sent:</strong> microphone sound, recordings, the error log, on-device settings.</li>
+    <li><strong>Why:</strong> keep progress when changing phones, reinstalling, or learning on several family devices.</li>
+    <li><strong>Where:</strong> Supabase servers (region ap-south-1, Mumbai, India). Encrypted in transit (HTTPS); each family can only read its own data (row-level access control).</li>
+    <li><strong>Stop or delete:</strong> sign out to stop syncing (data on the phone stays); <em>Delete account</em> deletes all cloud data (section 5b).</li>
   </ul>
 
   <h2>4. Android permissions</h2>
@@ -77,11 +89,12 @@
   <ul>
     <li>Settings, reports and privacy controls are behind the <em>parent gate</em> (a small challenge for grown-ups).</li>
     <li>Export all data (JSON or CSV) in the <em>Privacy</em> card.</li>
+    <li><strong>Music postcards:</strong> in the parent area, parents can send a tune their child made up as a MIDI file (notes and timing only, <strong>not a recording</strong>) through an app they choose. The app sends nothing by itself; children cannot send.</li>
     <li>Permanently delete one profile or all data on the phone; uninstalling the app also deletes everything.</li>
   </ul>
 
   <h2 id="delete-account">5b. Deleting an account</h2>
-  <p>Published builds have no accounts. If cloud sync with a parent account is ever turned on:</p>
+  <p>Only when a parent has created an account for cloud sync:</p>
   <ul>
     <li><strong>In the app:</strong> Parent area → Cloud sync → <em>Delete account</em>. All PianoBloom data in the cloud is deleted at once; the login is deleted too if PianoBloom created it.</li>
     <li><strong>Can't open the app?</strong> Email <a href="mailto:mittohoa@gmail.com">mittohoa@gmail.com</a> or open an <a href="https://github.com/mittohoa/pianobloom-download/issues">issue</a> (give the account email; don't post your child's data). Requests are handled within 30 days.</li>

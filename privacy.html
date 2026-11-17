@@ -32,7 +32,8 @@
 
   <div class="box">
     <strong>Tóm tắt:</strong> PianoBloom lưu tiến độ học <strong>ngay trên điện thoại</strong>.
-    Không quảng cáo, không công cụ phân tích hay theo dõi, không cần tạo tài khoản, không hỏi tên hay ảnh của bé.
+    Không quảng cáo, không công cụ phân tích hay theo dõi, không bắt buộc tạo tài khoản, không hỏi tên hay ảnh của bé.
+    Đồng bộ đám mây là <strong>tùy chọn</strong> ba mẹ tự bật bằng tài khoản phụ huynh (mục 3b).
     Micro (nếu ba mẹ bật) chỉ được xử lý trên máy và <strong>không bao giờ được ghi âm, lưu lại hay gửi đi</strong>.
   </div>
 
@@ -47,7 +48,7 @@
     <tr><td>Cài đặt âm thanh, hồ sơ đang học, ngôn ngữ ứng dụng, giờ nhắc tập, kết quả đo độ trễ âm thanh/micro (chỉ là số mili-giây)</td><td>Ghi nhớ lựa chọn</td></tr>
     <tr><td>Nhật ký lỗi: 20 lỗi gần nhất của ứng dụng, đã che mã định danh và email</td><td>Chỉ khi ba mẹ chọn kèm theo góp ý (mục 5c)</td></tr>
   </table>
-  <p>Tất cả nằm trong bộ nhớ riêng của ứng dụng trên điện thoại. Ứng dụng <strong>tắt sao lưu tự động của Android</strong> cho dữ liệu này.</p>
+  <p>Tất cả nằm trong bộ nhớ riêng của ứng dụng trên điện thoại; dữ liệu học được <strong>mã hóa</strong> bằng khóa giữ trong kho khóa bảo mật của Android. Ứng dụng <strong>tắt sao lưu tự động của Android</strong> cho dữ liệu này.</p>
 
   <h2>2. Micro</h2>
   <ul>
@@ -61,7 +62,18 @@
     <li>Học, chơi, báo cáo: <strong>hoàn toàn offline</strong>.</li>
     <li>Chỉ khi ba mẹ bấm <em>Kiểm tra bản mới</em>, ứng dụng đọc danh sách phiên bản công khai trên GitHub (bản tải từ trang này). Không gửi dữ liệu của bé; GitHub có thể ghi nhận địa chỉ IP như mọi trang web. Bản trên Google Play không có nút này.</li>
     <li>Chạm vào liên kết (tải bản mới, trang này) sẽ mở trình duyệt của điện thoại.</li>
-    <li>Đồng bộ đám mây <strong>chưa có trong bản tải từ trang này</strong>. Nếu sau này được bật, đó sẽ là tùy chọn ba mẹ tự bật bằng tài khoản phụ huynh, không gửi âm thanh, và chính sách này sẽ được cập nhật trước.</li>
+    <li id="hai-may"><strong>Nối hai máy qua Wi-Fi (thử nghiệm, chỉ khi ba mẹ bật):</strong> một máy làm máy chính, máy kia nhập địa chỉ và mã PIN để nối, trong <strong>cùng mạng Wi-Fi nhà hoặc điểm truy cập cá nhân</strong>. Giữa hai máy chỉ gửi số nốt nhạc được bấm/nhả, phím cần sáng và tín hiệu giữ kết nối — <strong>không gửi âm thanh, tên, dữ liệu học</strong>, không qua Internet hay máy chủ nào, không lưu lại. Ứng dụng chỉ nhận kết nối từ địa chỉ mạng nội bộ; sai PIN nhiều lần thì máy chính tự dừng; máy chính tự dừng sau 10 phút không có máy phụ.</li>
+    <li>Đồng bộ đám mây chỉ chạy khi ba mẹ tự bật (mục 3b).</li>
+  </ul>
+
+  <h2 id="dong-bo">3b. Đồng bộ đám mây (tùy chọn, từ bản 0.1.12)</h2>
+  <ul>
+    <li><strong>Mặc định tắt.</strong> Ba mẹ bật trong Khu vực phụ huynh → <em>Đồng bộ đám mây</em> bằng tài khoản phụ huynh (email + mật khẩu). Bé không tạo hay dùng tài khoản.</li>
+    <li><strong>Được gửi lên khi bật:</strong> email tài khoản phụ huynh; hồ sơ người học (vai trò, nhóm tuổi — không có tên, ảnh, ngày sinh); tiến độ bài học, các lần chơi (nốt đã chơi, đúng/chưa đúng, số gợi ý), thời gian luyện, mức độ kỹ năng, lịch ôn; ghi nhận của ba mẹ; bài hát đã chơi, giai điệu bé sáng tác (chỉ nốt và thời điểm) và vườn hoa; thông tin đàn đã kết nối (loại nguồn, tên, địa chỉ Bluetooth của đàn MIDI nếu có).</li>
+    <li><strong>Không bao giờ gửi:</strong> âm thanh micro, bản ghi âm, nhật ký lỗi, cài đặt trên máy.</li>
+    <li><strong>Mục đích:</strong> giữ tiến độ khi đổi máy, cài lại ứng dụng hoặc học trên nhiều máy của gia đình.</li>
+    <li><strong>Lưu ở đâu:</strong> máy chủ Supabase (khu vực ap-south-1, Mumbai, Ấn Độ). Dữ liệu được mã hóa khi truyền (HTTPS); mỗi gia đình chỉ đọc được dữ liệu của mình (kiểm soát truy cập theo dòng).</li>
+    <li><strong>Tắt hoặc xóa:</strong> đăng xuất để ngừng đồng bộ (dữ liệu trên máy vẫn giữ); <em>Xóa tài khoản</em> xóa toàn bộ dữ liệu trên đám mây (mục 5b).</li>
   </ul>
 
   <h2>4. Quyền Android ứng dụng xin</h2>
@@ -77,11 +89,12 @@
   <ul>
     <li>Cài đặt, báo cáo và quyền riêng tư nằm sau <em>cổng phụ huynh</em> (thử thách nhỏ cho người lớn).</li>
     <li>Xuất toàn bộ dữ liệu (JSON hoặc CSV) trong thẻ <em>Quyền riêng tư</em>.</li>
+    <li><strong>Bưu thiếp âm nhạc:</strong> trong khu vực phụ huynh, ba mẹ có thể gửi một giai điệu bé tự sáng tác dưới dạng file MIDI (chỉ các nốt và thời điểm, <strong>không phải bản ghi âm</strong>) qua ứng dụng ba mẹ chọn. Ứng dụng không tự gửi gì; bé không gửi được.</li>
     <li>Xóa vĩnh viễn từng hồ sơ hoặc toàn bộ dữ liệu trên máy; gỡ ứng dụng cũng xóa hết dữ liệu.</li>
   </ul>
 
   <h2 id="xoa-tai-khoan">5b. Xóa tài khoản</h2>
-  <p>Bản tải từ trang này chưa có tài khoản. Nếu sau này ba mẹ bật đồng bộ đám mây bằng tài khoản phụ huynh:</p>
+  <p>Chỉ áp dụng khi ba mẹ đã tạo tài khoản để đồng bộ đám mây:</p>
   <ul>
     <li><strong>Trong ứng dụng:</strong> Khu vực phụ huynh → Đồng bộ đám mây → <em>Xóa tài khoản</em>. Toàn bộ dữ liệu PianoBloom trên đám mây bị xóa ngay; tài khoản đăng nhập cũng bị xóa nếu được tạo từ PianoBloom.</li>
     <li><strong>Không mở được ứng dụng?</strong> Gửi yêu cầu xóa tới <a href="mailto:mittohoa@gmail.com">mittohoa@gmail.com</a> hoặc qua <a href="https://github.com/mittohoa/pianobloom-download/issues">trang Issues</a> (ghi email tài khoản; không đăng dữ liệu của bé). Yêu cầu được xử lý trong vòng 30 ngày.</li>

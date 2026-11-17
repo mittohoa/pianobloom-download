@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PianoBloom — Privacy policy</title>
+<meta name="description" content="What PianoBloom stores, where, and how parents control their child's data.">
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+  :root { --lav:#7955D6; --plum:#443366; --text:#28233A; --muted:#5B5470; --bg:#FFF8F0; --card:#fff; --line:#E8E0FA; }
+  @media (prefers-color-scheme: dark) { :root { --text:#F3EEFF; --muted:#C9C0DD; --bg:#17121F; --card:#231D33; --line:#3A3150; --plum:#D9CCFF; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:17px/1.6 "Nunito","Segoe UI",Roboto,Arial,sans-serif; }
+  .wrap { max-width: 780px; margin: 0 auto; padding: 28px 16px 56px; }
+  a { color: var(--lav); }
+  header { display:flex; align-items:center; gap:12px; margin-bottom: 8px; }
+  header img { width:44px; height:44px; border-radius:12px; }
+  h1 { color: var(--plum); font-size: clamp(26px, 4vw, 34px); margin: 12px 0 4px; }
+  h2 { color: var(--plum); font-size: 21px; margin: 28px 0 8px; }
+  .meta { color: var(--muted); font-size: 14px; }
+  .box { background: var(--card); border:1px solid var(--line); border-radius: 18px; padding: 16px 18px; }
+  ul { padding-left: 22px; } li { margin: 4px 0; }
+  table { width:100%; border-collapse: collapse; font-size: 15px; }
+  th, td { text-align:left; padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><img src="icon.png" alt=""><a href="./">← PianoBloom</a> · <a href="privacy.html" hreflang="vi">Tiếng Việt</a></header>
+  <h1>Privacy policy</h1>
+  <p class="meta">Applies to the PianoBloom Android app (<code>com.mittohoa.pianobloom</code>), trial versions from this site and Google Play · Updated 17 Nov 2026</p>
+
+  <div class="box">
+    <strong>In short:</strong> PianoBloom keeps learning progress <strong>on the phone</strong>.
+    No ads, no analytics or tracking tools, no account needed, never asks for your child's name or photo.
+    The microphone (if a parent turns it on) is processed on the phone only and is <strong>never recorded, stored or sent</strong>.
+  </div>
+
+  <h2>1. What the app stores, and where</h2>
+  <table>
+    <tr><th>Data</th><th>Purpose</th></tr>
+    <tr><td>Learner profiles: role (child / parent) and age band — <em>no name, photo or birth date</em></td><td>Pick suitable lessons, keep each person's progress separate</td></tr>
+    <tr><td>Lesson progress, attempts (notes played, right/not yet, hints used), practice time, skill levels, review schedule</td><td>Lesson journey, reward garden, reports for parents</td></tr>
+    <tr><td>Songs played; tunes your child made up (only note sequences and timing — <em>not recordings</em>; up to 12 per person); your child's garden (days watered, last watering day, garden friends)</td><td>Mark songs played, replay tunes, reward garden</td></tr>
+    <tr><td>Parent observations ("can do it" / "not yet") — no free-text field</td><td>Report things the app can't measure</td></tr>
+    <tr><td>Connected piano info (source type, device name, Bluetooth address of a MIDI piano if any)</td><td>Reconnect the MIDI piano</td></tr>
+    <tr><td>Sound settings, current learner, app language, reminder time, measured audio/microphone latency (just milliseconds)</td><td>Remember choices</td></tr>
+    <tr><td>Error log: the last 20 app errors, with ids and emails masked</td><td>Only if a parent chooses to attach it to feedback (section 5c)</td></tr>
+  </table>
+  <p>Everything is in the app's private storage on the phone. The app <strong>turns off Android's automatic backup</strong> for this data.</p>
+
+  <h2>2. Microphone</h2>
+  <ul>
+    <li>Used only when a parent picks "real piano via microphone" and allows it in the parent area (off by default).</li>
+    <li>Sound is analysed on the phone to recognise the notes your child plays; <strong>never recorded, stored or sent</strong>. Only the result (which note) is used, just like the on-screen keyboard.</li>
+    <li>It can be turned off at any time in the parent area or in Android settings.</li>
+  </ul>
+
+  <h2>3. Network</h2>
+  <ul>
+    <li>Learning, playing and reports work <strong>fully offline</strong>.</li>
+    <li>Only when a parent taps <em>Check for a new version</em> (download-page builds), the app reads the public list of versions on GitHub. No child data is sent; GitHub may see the IP address, like any website. The Google Play build has no such button.</li>
+    <li>Tapping a link (download, this page) opens the phone's browser.</li>
+    <li>Cloud sync is <strong>not included</strong> in the published builds. If it is ever offered, it will be an option parents turn on with a parent account, without sound, and this policy will be updated first.</li>
+  </ul>
+
+  <h2>4. Android permissions</h2>
+  <ul>
+    <li><strong>Microphone</strong> — only for real-piano-via-microphone mode (section 2).</li>
+    <li><strong>Bluetooth (find and connect nearby devices)</strong> — only to connect a Bluetooth MIDI piano when a parent searches for one. On Android 11 and older the system requires location permission to scan Bluetooth; the app <strong>does not use location</strong>.</li>
+    <li><strong>Internet</strong> — for section 3.</li>
+    <li><strong>Notifications</strong> — only when a parent turns on the <em>Practice reminder</em> (off by default): one notification a day at the chosen time, scheduled on the phone, no server.</li>
+    <li><strong>Run at startup</strong> — only to reschedule the practice reminder after the phone restarts; nothing else.</li>
+  </ul>
+
+  <h2>5. Parents are in control</h2>
+  <ul>
+    <li>Settings, reports and privacy controls are behind the <em>parent gate</em> (a small challenge for grown-ups).</li>
+    <li>Export all data (JSON or CSV) in the <em>Privacy</em> card.</li>
+    <li>Permanently delete one profile or all data on the phone; uninstalling the app also deletes everything.</li>
+  </ul>
+
+  <h2 id="delete-account">5b. Deleting an account</h2>
+  <p>Published builds have no accounts. If cloud sync with a parent account is ever turned on:</p>
+  <ul>
+    <li><strong>In the app:</strong> Parent area → Cloud sync → <em>Delete account</em>. All PianoBloom data in the cloud is deleted at once; the login is deleted too if PianoBloom created it.</li>
+    <li><strong>Can't open the app?</strong> Email <a href="mailto:mittohoa@gmail.com">mittohoa@gmail.com</a> or open an <a href="https://github.com/mittohoa/pianobloom-download/issues">issue</a> (give the account email; don't post your child's data). Requests are handled within 30 days.</li>
+    <li>Learning data on the phone is deleted by the parent in the <em>Privacy</em> card or by uninstalling.</li>
+  </ul>
+
+  <h2 id="feedback">5c. Feedback and the error log</h2>
+  <ul>
+    <li>When an error happens, the app keeps the last 20 errors <strong>on the phone</strong> (ids and emails masked). There is no automatic crash reporting and nothing is sent.</li>
+    <li>In <em>Feedback &amp; bug reports</em>, parents write the message, preview it and choose to send it by email (to mittohoa@gmail.com) or another app. Device info and the error log are attached only when ticked.</li>
+  </ul>
+
+  <h2>6. Children</h2>
+  <p>PianoBloom is for children aged 4–12 learning with, or with the consent of, a parent or guardian. The app has no chat, social features, leaderboards, ads or in-app purchases.</p>
+
+  <h2>7. Changes and contact</h2>
+  <p>When this policy changes, the date at the top changes and the release notes say so. Questions or requests: <a href="mailto:mittohoa@gmail.com">mittohoa@gmail.com</a> or <a href="https://github.com/mittohoa/pianobloom-download/issues">github.com/mittohoa/pianobloom-download/issues</a> (please don't post your child's personal information there).</p>
+  <p class="meta">Trial version: this policy describes how the app currently works and has not had a formal legal review. The Vietnamese version is the original.</p>
+</div>
+</body>
+</html>

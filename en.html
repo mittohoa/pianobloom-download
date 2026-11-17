@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PianoBloom — Piano self-study for kids and parents</title>
+<meta name="description" content="PianoBloom: an Android app for children aged 4–12 and parents with no music background to learn piano on their own. Trial version, free APK download.">
+<meta name="theme-color" content="#7955D6">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="alternate" hreflang="vi" href="https://mittohoa.github.io/pianobloom-download/">
+<link rel="alternate" hreflang="en" href="https://mittohoa.github.io/pianobloom-download/en.html">
+<style>
+  :root {
+    --lav: #7955D6; --plum: #443366; --pink: #F59BCB; --mint: #70C9AE;
+    --sun: #F6C453; --cream: #FFF8F0; --text: #28233A; --muted: #5B5470;
+    --card: #FFFFFF; --line: #E8E0FA; --bg: #FFF8F0;
+    --hero: linear-gradient(160deg, #FFF1DC 0%, #F3EAFF 55%, #E2F6EE 100%);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text: #F3EEFF; --muted: #C9C0DD; --card: #231D33; --line: #3A3150;
+      --bg: #17121F; --plum: #D9CCFF;
+      --hero: linear-gradient(160deg, #2A2038 0%, #221B33 55%, #18282A 100%);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 17px/1.55 "Nunito", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  a { color: var(--lav); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+  header.hero { background: var(--hero); padding: 48px 0 56px; overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
+  .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 22px; color: var(--plum); }
+  .brand img { width: 48px; height: 48px; }
+  h1 { font-size: clamp(32px, 5vw, 50px); line-height: 1.12; margin: 18px 0 12px; color: var(--plum); }
+  .lead { font-size: 19px; color: var(--muted); margin: 0 0 24px; max-width: 34em; }
+  .badge { display: inline-block; padding: 4px 12px; border-radius: 999px; background: #FFE39A; color: #443366; font-weight: 700; font-size: 14px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 8px 0 10px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+    padding: 15px 24px; border-radius: 18px; font-weight: 800; font-size: 18px;
+    min-height: 48px;
+  }
+  .btn.primary { background: var(--lav); color: #fff; box-shadow: 0 10px 24px rgba(121,85,214,.35); }
+  .btn.primary:hover { filter: brightness(1.07); }
+  .btn.ghost { border: 2px solid var(--lav); color: var(--lav); }
+  .meta { color: var(--muted); font-size: 14px; }
+  .phone { justify-self: center; width: min(300px, 80vw); border-radius: 34px; padding: 10px; background: #1d1828; box-shadow: 0 24px 60px rgba(68,51,102,.35); transform: rotate(2deg); }
+  .phone img { display: block; width: 100%; border-radius: 26px; }
+  section { padding: 56px 0; }
+  h2 { font-size: clamp(26px, 3.4vw, 34px); color: var(--plum); margin: 0 0 8px; }
+  .sub { color: var(--muted); margin: 0 0 28px; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: 22px; }
+  .card .ico { font-size: 34px; line-height: 1; }
+  .card h3 { margin: 10px 0 6px; font-size: 19px; }
+  .card p { margin: 0; color: var(--muted); font-size: 16px; }
+  .journey { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; counter-reset: l; }
+  .step { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 14px 16px; }
+  .step b { display: block; color: var(--lav); font-size: 14px; }
+  .shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .shots.wide { grid-template-columns: repeat(3, 1fr); margin-top: 16px; }
+  figure { margin: 0; }
+  figure img { width: 100%; border-radius: 20px; border: 1px solid var(--line); display: block; }
+  figcaption { font-size: 14px; color: var(--muted); margin-top: 6px; text-align: center; }
+  .download { background: var(--card); border: 1px solid var(--line); border-radius: 28px; padding: 28px; }
+  .dl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  ol.install { padding-left: 22px; margin: 8px 0 0; }
+  ol.install li { margin: 6px 0; }
+  .release { border-top: 1px solid var(--line); padding: 14px 0; }
+  .release:first-child { border-top: 0; padding-top: 4px; }
+  .release h4 { margin: 0; font-size: 17px; }
+  .release pre { white-space: pre-wrap; font: inherit; color: var(--muted); margin: 6px 0 0; font-size: 15px; }
+  code, .hash { font-family: ui-monospace, Consolas, monospace; font-size: 13px; word-break: break-all; }
+  .note { background: #FFF4D6; color: #4A3B12; border-radius: 18px; padding: 16px 18px; font-size: 15px; }
+  @media (prefers-color-scheme: dark) { .note { background: #3A3018; color: #FBEBC0; } }
+  footer { padding: 32px 0 48px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
+  @media (max-width: 860px) {
+    .hero-grid, .dl-grid { grid-template-columns: 1fr; }
+    .cards { grid-template-columns: 1fr 1fr; }
+    .journey { grid-template-columns: 1fr 1fr; }
+    .shots, .shots.wide { grid-template-columns: 1fr 1fr; }
+    .phone { transform: none; }
+  }
+  @media (max-width: 520px) {
+    .cards, .shots.wide { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="brand">
+        <img src="icon.png" width="48" height="48" alt="" style="border-radius:12px">
+        PianoBloom
+      </div>
+      <h1>Every note<br>makes a flower bloom.</h1>
+      <p class="lead">An Android app that helps <strong>children aged 4–12</strong> and <strong>parents with no music background</strong> learn piano on their own: Bloomie guides every step by voice, with listen – play – create games, no teacher needed.</p>
+      <div class="cta">
+        <a class="btn primary" id="dl" href="https://github.com/mittohoa/pianobloom-download/releases/latest/download/pianobloom.apk">
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 3h2v10.2l3.6-3.6 1.4 1.4-6 6-6-6 1.4-1.4 3.6 3.6V3zM5 19h14v2H5z"/></svg>
+          Download the Android APK
+        </a>
+        <a class="btn ghost" href="#cai-dat">How to install</a>
+      </div>
+      <div class="meta"><span id="dl-meta">Latest version · Android 7.0 or later</span> · <span class="badge">Trial version</span></div>
+    </div>
+    <div class="phone"><img src="screens/home.webp" width="540" height="1170" alt="Home screen: Bloomie greets the child, with Today's lesson and Free play"></div>
+  </div>
+</header>
+
+<main>
+  <section>
+    <div class="wrap">
+      <h2>Learning feels like playing in a music garden</h2>
+      <p class="sub">Made for beginners: few words, lots of animation and voice.</p>
+      <div class="cards">
+        <div class="card"><div class="ico">🌸</div><h3>Bloomie leads the way</h3><p>A rose with headphones greets your child, reads every step aloud (words light up as they are spoken), praises good work and gently hints when something isn't right yet.</p></div>
+        <div class="card"><div class="ico">🎹</div><h3>On-screen keyboard or a real piano</h3><p>A multi-touch virtual keyboard; also USB MIDI, Bluetooth MIDI and the microphone (trial).</p></div>
+        <div class="card"><div class="ico">🐦🐻</div><h3>Listening and playing games</h3><p>"High or low?", Bloomie asks – you answer, flowers bloom with the beat, notes float up from every key your child plays.</p></div>
+        <div class="card"><div class="ico">👨‍👩‍👧</div><h3>Parents learn too</h3><p>A "parent learner" profile with its own progress, tips for parents before and after each lesson, 7/30-day reports with no rankings.</p></div>
+        <div class="card"><div class="ico">📴</div><h3>Works fully offline</h3><p>No internet needed, no ads, no tracking. Microphone sound is processed on the phone only and never sent.</p></div>
+        <div class="card"><div class="ico">🔒</div><h3>Parent gate</h3><p>Settings, reports and privacy controls sit behind a small challenge for grown-ups.</p></div>
+        <div class="card"><div class="ico">🎵</div><h3>Songs and rhythm</h3><p>Follow the glowing keys while Bloomie plays along, or "play in time" with the metronome; tunes your child makes up are saved to replay.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <h2>4 gardens, 32 lessons</h2>
+      <p class="sub">They open one by one along the journey — each lesson grows a flower, each finished garden grows a big tree; replay any time.</p>
+      <div class="journey">
+        <div class="step"><b>Pack 1 · ages 4–9</b>The sound garden: high/low, steady beat, finding C, C–D–E</div>
+        <div class="step"><b>Pack 2 · ages 5–9</b>Five happy fingers: C–G five-finger position, up/down, a five-note song</div>
+        <div class="step"><b>Pack 3 · ages 6–12</b>First music reading: the staff, treble clef, quarter/half notes, rests</div>
+        <div class="step"><b>Pack 4 · ages 7–12</b>Two hands sing together: left hand, bass clef, two hands, a 4-bar composition</div>
+      </div>
+      <p class="note" style="margin-top:18px"><strong>Note:</strong> the lessons are <strong>drafts not yet reviewed by a piano teacher</strong> (clearly marked in the app). Please treat this as a trial. The app is in Vietnamese by default; switch to English in the parent area → Language.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <h2>Screenshots</h2>
+      <p class="sub">Taken from the trial version (Vietnamese interface).</p>
+      <div class="shots">
+        <figure><img src="screens/journey.webp" loading="lazy" width="540" height="1170" alt="Home screen with the music garden journey"><figcaption>The music garden journey</figcaption></figure>
+        <figure><img src="screens/home.webp" loading="lazy" width="540" height="1170" alt="Bloomie greets the child"><figcaption>Bloomie says hello</figcaption></figure>
+        <figure><img src="screens/report.webp" loading="lazy" width="540" height="1170" alt="Parent report"><figcaption>Report for parents</figcaption></figure>
+      </div>
+      <div class="shots wide">
+        <figure><img src="screens/game.webp" loading="lazy" width="960" height="443" alt="High or low game with a bird and a bear"><figcaption>The "High or low?" game</figcaption></figure>
+        <figure><img src="screens/lesson.webp" loading="lazy" width="960" height="443" alt="A lesson with Bloomie's praise"><figcaption>Praise after every right answer</figcaption></figure>
+        <figure><img src="screens/freeplay.webp" loading="lazy" width="960" height="443" alt="Free play, note names float up from the keys"><figcaption>Free play, Bloomie says the note names</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="cai-dat" style="padding-top:0">
+    <div class="wrap">
+      <div class="download">
+        <div class="dl-grid">
+          <div>
+            <h2>Download and install</h2>
+            <p class="sub" style="margin-bottom:12px">The app is not on Google Play yet; install it directly from the APK file.</p>
+            <a class="btn primary" href="https://github.com/mittohoa/pianobloom-download/releases/latest/download/pianobloom.apk">Download the latest version</a>
+            <ol class="install">
+              <li>Open the link on an Android phone (7.0 or later).</li>
+              <li>Open the downloaded <code>pianobloom.apk</code> file.</li>
+              <li>If asked, allow <em>Install unknown apps</em> for the browser or Files app.</li>
+              <li>Open PianoBloom and go to the <em>Parent area</em> to create your child's profile (switch to English under Language).</li>
+            </ol>
+            <p class="meta">Older phone (32-bit chip) says "not compatible"? Download the <a href="https://github.com/mittohoa/pianobloom-download/releases/latest/download/pianobloom-armv7.apk">32-bit version</a>.</p>
+            <p class="meta" style="margin-top:14px"><strong>Updating:</strong> download the new version and install it over the old one — learning progress on the phone is kept.</p>
+            <p class="meta"><strong>Using 0.1.6 or older?</strong> From 0.1.7 the app has a new id (for Google Play), so Android installs it as a new app next to the old one. To move progress (from 0.1.8): in the <em>old</em> app, Parent area → Privacy → <em>Copy learning data (JSON)</em>; then in the <em>new</em> app, Parent area → Privacy → <em>Paste data from the old version</em>. Then you can uninstall the old app.</p>
+          </div>
+          <div>
+            <h2 style="font-size:24px">Versions</h2>
+            <div id="releases"><p class="meta">See all versions on the <a href="https://github.com/mittohoa/pianobloom-download/releases">Releases page</a>. Release notes are in Vietnamese.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    PianoBloom — trial version. The app has no ads or trackers; this page uses no analytics either.
+    <a href="privacy-en.html">Privacy policy</a>. Feedback: <a href="mailto:mittohoa@gmail.com">mittohoa@gmail.com</a>. <a href="./" hreflang="vi">Tiếng Việt</a>.
+    The SHA-256 checksum of each APK is in the release notes.
+  </div>
+</footer>
+
+<script>
+// Lists releases from the public GitHub API (no tracking, no cookies).
+(function () {
+  var box = document.getElementById('releases');
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function mb(b) { return (b / 1048576).toFixed(1).+ ' MB'; }
+  fetch('https://api.github.com/repos/mittohoa/pianobloom-download/releases?per_page=10')
+    .then(function (r) { if (!r.ok) throw r; return r.json(); })
+    .then(function (list) {
+      if (!list.length) return;
+      var html = '';
+      list.forEach(function (rel, i) {
+        var apk = (rel.assets || []).filter(function (a) { return a.name === 'pianobloom.apk'; })[0];
+        var date = new Date(rel.published_at).toLocaleDateString('en-GB');
+        html += '<div class="release"><h4>' + esc(rel.name || rel.tag_name) + (i === 0 ? ' <span class="badge">Latest</span>' : '') + '</h4>' +
+          '<div class="meta">' + date + (apk ? ' · ' + mb(apk.size) + ' · <a href="' + esc(apk.browser_download_url) + '">Download this one</a>' : '') + '</div>' +
+          (rel.body ? '<pre>' + esc(rel.body.split('\n## SHA-256')[0].trim()) + '</pre>' : '') + '</div>';
+        if (i === 0 && apk) {
+          document.getElementById('dl-meta').textContent = (rel.tag_name || '') + ' · ' + mb(apk.size) + ' · Android 7.0 or later';
+        }
+      });
+      box.innerHTML = html;
+    })
+    .catch(function () { /* keep the static link */ });
+})();
+</script>
+</body>
+</html>
